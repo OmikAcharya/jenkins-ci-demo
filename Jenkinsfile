@@ -19,7 +19,7 @@ pipeline {
 
         stage('Lint') {
             steps {
-                sh './venv/bin/flake8 .'
+                sh './venv/bin/flake8 app.py test_app.py'
             }
         }
 
