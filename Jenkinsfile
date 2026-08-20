@@ -18,10 +18,17 @@ pipeline {
         }
 
         stage('Lint') {
-            steps {
-                sh './venv/bin/flake8 app.py test_app.py'
-            }
-        }
+    steps {
+        sh '''
+            echo "=== LINTING ==="
+            pwd
+            echo "Jenkinsfile says:"
+            grep -n flake8 Jenkinsfile
+            echo "Running:"
+            ./venv/bin/flake8 --exclude=venv app.py test_app.py
+        '''
+    }
+}
 
         stage('Unit Tests') {
             steps {
